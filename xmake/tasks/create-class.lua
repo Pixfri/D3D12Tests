@@ -24,19 +24,19 @@ on_run(function()
   local className = path.basename(classPath)
 
   local files = {
-    { TargetPath = path.join("Include/ProjectName", classPath) .. ".hpp", Template = headerTemplate },
-    { TargetPath = path.join("Include/ProjectName", classPath) .. ".inl", Template = inlineTemplate }
+    { TargetPath = path.join("Include/D3D12Tests", classPath) .. ".hpp", Template = headerTemplate },
+    { TargetPath = path.join("Include/D3D12Tests", classPath) .. ".inl", Template = inlineTemplate }
   }
 
   if not option.get("nocpp") then
-    table.insert(files, {TargetPath = path.join("Source", "ProjectName", classPath) .. ".cpp", Template = sourceTemplate})
+    table.insert(files, {TargetPath = path.join("Source", "D3D12Tests", classPath) .. ".cpp", Template = sourceTemplate})
   end
 
   local replacements = {
     CLASS_NAME = className,
     CLASS_PATH = classPath,
     COPYRIGHT = os.date("%Y") .. [[ Jean "Pixfri" Letessier ]],
-    HEADER_GUARD = "PN_" .. classPath:gsub("[/\\]", "_"):upper() .. "_HPP"
+    HEADER_GUARD = "D3D12TESTS_" .. classPath:gsub("[/\\]", "_"):upper() .. "_HPP"
   }
 
   for _, file in pairs(files) do
@@ -55,7 +55,7 @@ end)
 
 headerTemplate = [[
 // Copyright (C) %COPYRIGHT%
-// This file is part of ProjectName.
+// This file is part of D3D12 Tests.
 // For conditions of distribution and use, see copyright notice in LICENSE.
 
 #pragma once
@@ -63,7 +63,7 @@ headerTemplate = [[
 #ifndef %HEADER_GUARD%
 #define %HEADER_GUARD%
 
-namespace ProjectName {
+namespace D3D12Tests {
     class %CLASS_NAME% {
     public:
         %CLASS_NAME%() = default;
@@ -79,31 +79,31 @@ namespace ProjectName {
     };
 }
 
-#include "ProjectName/%CLASS_PATH%.inl"
+#include "D3D12Tests/%CLASS_PATH%.inl"
 
 #endif // %HEADER_GUARD%
 ]]
 
 inlineTemplate = [[
 // Copyright (C) %COPYRIGHT%
-// This file is part of ProjectName.
+// This file is part of D3D12 Tests.
 // For conditions of distribution and use, see copyright notice in LICENSE.
 
 #pragma once
 
-namespace ProjectName {
+namespace D3D12Tests {
     
 }
 ]]
 
 sourceTemplate = [[
 // Copyright (C) %COPYRIGHT%
-// This file is part of ProjectName.
+// This file is part of D3D12 Tests.
 // For conditions of distribution and use, see copyright notice in LICENSE.
 
-#include "ProjectName/%CLASS_PATH%.hpp"
+#include "D3D12Tests/%CLASS_PATH%.hpp"
 
-namespace ProjectName {
+namespace D3D12Tests {
     
 }
 ]]

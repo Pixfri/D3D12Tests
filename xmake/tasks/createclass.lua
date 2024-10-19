@@ -6,11 +6,9 @@ set_menu({
   usage = "xmake create-class [options] name",
   description = "Task to help class creation.",
   options = {
-    {
       {nil, "nocpp", "k", nil, "Set this to create a header-only class."},
-      {nil, "name", "v", nil, "Class name"}
-    }
-  }
+      {nil, "name", "v", nil, "Class name" }
+  } 
 })
 
 on_run(function()
@@ -62,6 +60,8 @@ headerTemplate = [[
 
 #ifndef %HEADER_GUARD%
 #define %HEADER_GUARD%
+
+#include "D3D12Tests/pch.hpp"
 
 namespace D3D12Tests {
     class %CLASS_NAME% {

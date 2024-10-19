@@ -7,6 +7,7 @@ set_languages("cxx20")
 set_allowedplats("windows")
 
 option("override_runtime", {description = "Override VS runtime to MD in release and MDd in debug.", default = true})
+option("usepch", {description = "Use the precompiled header to speedup compilation speeds.", default = true})
 
 add_includedirs("Include")
 
@@ -48,7 +49,13 @@ target("D3D12Tests")
   for _, ext in ipairs({".hpp", ".inl"}) do
     add_headerfiles("Include/**" .. ext)
   end
+
+  if has_config("usepch") then
+    set_pcxxheader("Include/D3D12Tests/pch.hpp")
+  end
   
   add_rpathdirs("$ORIGIN")
 
   add_packages("directx-headers", "directxtk12", "directxshadercompiler", "directxmath")
+
+includes("xmake/**.lua")

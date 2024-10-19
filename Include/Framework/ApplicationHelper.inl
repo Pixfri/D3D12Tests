@@ -190,7 +190,7 @@ namespace D3D12Tests {
     }
 
     template <class T>
-    void ResetComPtrArray(T* uniquePtrArray) {
+    void ResetUniquePtrArray(T* uniquePtrArray) {
         for (auto& i : *uniquePtrArray) {
             i.reset();
         }

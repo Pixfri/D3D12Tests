@@ -9,8 +9,6 @@ set_allowedplats("windows")
 option("override_runtime", {description = "Override VS runtime to MD in release and MDd in debug.", default = true})
 option("usepch", {description = "Use the precompiled header to speedup compilation speeds.", default = true})
 
-add_includedirs("Include")
-
 add_rules("plugin.vsxmake.autoupdate")
 add_rules("plugin.compile_commands.autoupdate")
 
@@ -35,27 +33,32 @@ if is_plat("windows") then
   end
 
   add_defines("UNICODE", "_UNICODE")
+
+  add_syslinks("User32", "dxgi", "d3d12", "shell32")
 end
 
 add_cxflags("-Wno-missing-field-initializers -Werror=vla", {tools = {"clang", "gcc"}})
 
 add_requires("directx-headers", "directxtk12", "directxshadercompiler", "directxmath")
 
-target("D3D12Tests")
-  set_kind("binary")
+target("Framework")
+  set_kind("static")
   
   add_files("Source/**.cpp")
   
+  add_includedirs("Include", {public = true})
   for _, ext in ipairs({".hpp", ".inl"}) do
     add_headerfiles("Include/**" .. ext)
   end
 
   if has_config("usepch") then
-    set_pcxxheader("Include/D3D12Tests/pch.hpp")
+    set_pcxxheader("Include/Framework/pch.hpp")
   end
   
   add_rpathdirs("$ORIGIN")
 
-  add_packages("directx-headers", "directxtk12", "directxshadercompiler", "directxmath")
+  add_packages("directx-headers", "directxtk12", "directxshadercompiler", "directxmath", {public = true})
+
+includes("Tests/**/xmake.lua")
 
 includes("xmake/**.lua")

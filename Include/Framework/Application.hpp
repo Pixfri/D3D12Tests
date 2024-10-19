@@ -7,10 +7,10 @@
 #ifndef D3D12TESTS_APPLICATION_HPP
 #define D3D12TESTS_APPLICATION_HPP
 
-#include "D3D12Tests/pch.hpp"
+#include "Framework/pch.hpp"
 
-#include "D3D12Tests/ApplicationHelper.hpp"
-#include "D3D12Tests/Win32ApplicationBase.hpp"
+#include "Framework/ApplicationHelper.hpp"
+#include "Framework/Win32ApplicationBase.hpp"
 
 namespace D3D12Tests {
     class Application {
@@ -37,7 +37,7 @@ namespace D3D12Tests {
         inline UINT GetHeight() const;
         inline const WCHAR* GetTitle() const;
 
-        void ParseCommandLine(_In_reads_(argc) WCHAR* argv[], Int32 argc);
+        void ParseCommandLineArgs(_In_reads_(argc) WCHAR* argv[], Int32 argc);
 
     protected:
         inline std::wstring GetAssetFullPath(LPCWSTR assetName) const;
@@ -67,6 +67,6 @@ namespace D3D12Tests {
     };
 }
 
-#include "D3D12Tests/Application.inl"
+#include "Framework/Application.inl"
 
 #endif // D3D12TESTS_APPLICATION_HPP

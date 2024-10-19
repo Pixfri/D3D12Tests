@@ -7,9 +7,9 @@
 #ifndef D3D12TESTS_WIN32APPLICATIONBASE_HPP
 #define D3D12TESTS_WIN32APPLICATIONBASE_HPP
 
-#include "D3D12Tests/pch.hpp"
+#include "Framework/pch.hpp"
 
-#include "D3D12Tests/Application.hpp"
+#include "Framework/Application.hpp"
 
 namespace D3D12Tests {
     class Application;
@@ -27,6 +27,6 @@ namespace D3D12Tests {
     };
 }
 
-#include "D3D12Tests/Win32ApplicationBase.inl"
+#include "Framework/Win32ApplicationBase.inl"
 
 #endif // D3D12TESTS_WIN32APPLICATIONBASE_HPP

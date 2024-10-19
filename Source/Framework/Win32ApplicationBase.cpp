@@ -2,7 +2,7 @@
 // This file is part of D3D12 Tests.
 // For conditions of distribution and use, see copyright notice in LICENSE.
 
-#include "D3D12Tests/Win32ApplicationBase.hpp"
+#include "Framework/Win32ApplicationBase.hpp"
 
 namespace D3D12Tests {
 	HWND Win32ApplicationBase::m_HWnd = nullptr;

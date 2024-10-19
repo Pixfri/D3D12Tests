@@ -2,7 +2,7 @@
 // This file is part of D3D12 Tests.
 // For conditions of distribution and use, see copyright notice in LICENSE.
 
-#include "D3D12Tests/Application.hpp"
+#include "Framework/Application.hpp"
 
 namespace D3D12Tests {
     using namespace Microsoft::WRL;
@@ -21,7 +21,7 @@ namespace D3D12Tests {
 
     // Helper function for parsing any supplied command line args.
     _Use_decl_annotations_
-    void Application::ParseCommandLine(WCHAR* argv[], Int32 argc) {
+    void Application::ParseCommandLineArgs(WCHAR* argv[], Int32 argc) {
         for (Int32 i = 1; i < argc; ++i) {
             if (_wcsnicmp(argv[i], L"-warp", wcslen(argv[i])) == 0 ||
                 _wcsnicmp(argv[i], L"/warp", wcslen(argv[i])) == 0) {

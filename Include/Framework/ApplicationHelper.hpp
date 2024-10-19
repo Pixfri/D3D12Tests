@@ -7,7 +7,7 @@
 #ifndef D3D12TESTS_APPLICATIONHELPER_HPP
 #define D3D12TESTS_APPLICATIONHELPER_HPP
 
-#include "D3D12Tests/pch.hpp"
+#include "Framework/pch.hpp"
 
 #include <stdexcept>
 
@@ -71,6 +71,6 @@ namespace D3D12Tests {
 	void ResetComPtrArray(T* uniquePtrArray);
 }
 
-#include "D3D12Tests/ApplicationHelper.inl"
+#include "Framework/ApplicationHelper.inl"
 
 #endif // D3D12TESTS_APPLICATIONHELPER_HPP

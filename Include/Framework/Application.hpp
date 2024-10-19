@@ -59,7 +59,7 @@ namespace D3D12Tests {
         bool m_UseWarpDevice;
     
     private:
-        // Root assets path.
+        // Root assets' path.
         std::wstring m_AssetsPath;
 
         // Window title.

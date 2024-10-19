@@ -23,7 +23,7 @@ end
 set_encodings("utf-8")
 set_exceptions("cxx")
 set_languages("cxx20")
-set_rundir("./bin/$(plat)_$(arch)_$(mode)")
+set_rundir(".")
 set_targetdir("./bin/$(plat)_$(arch)_$(mode)")
 set_warnings("allextra")
 
@@ -34,7 +34,7 @@ if is_plat("windows") then
 
   add_defines("UNICODE", "_UNICODE")
 
-  add_syslinks("User32", "dxgi", "d3d12", "shell32")
+  add_syslinks("User32", "dxgi", "d3d12", "d3dcompiler", "shell32")
 end
 
 add_cxflags("-Wno-missing-field-initializers -Werror=vla", {tools = {"clang", "gcc"}})
@@ -58,6 +58,11 @@ target("Framework")
   add_rpathdirs("$ORIGIN")
 
   add_packages("directx-headers", "directxtk12", "directxshadercompiler", "directxmath", {public = true})
+
+rule("cp_tests_resources")
+  after_build(function (target)
+    os.cp("Tests/" .. target:name() .. "/Resources", "bin/$(plat)_$(arch)_$(mode)/" .. target:name())
+  end)
 
 includes("Tests/**/xmake.lua")
 
